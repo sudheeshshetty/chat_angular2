@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
+import {LoginRegister} from './loginRegister.service';
 
 @Component({
     selector:'login',
-    templateUrl:'./login.component.html'
+    templateUrl:'./login.component.html',
+    providers:[LoginRegister]
 })
 
 export class LoginComponent{
@@ -24,15 +26,17 @@ export class LoginComponent{
         handle:'',
         password:''
     }
-    constructor(){
+    constructor(private loginregister:LoginRegister){ }
     
-    }
     login():void{
-        console.log(this.login_data);
+        this.loginregister.loginUser().subscribe(data=>{
+            console.log(data);
+        });
     }
     
     register():void{
         console.log(this.register_data);
+        
     }
     
     

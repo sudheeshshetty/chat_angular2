@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var loginRegister_service_1 = require("./loginRegister.service");
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(loginregister) {
+        this.loginregister = loginregister;
         this.register_data = {
             name: '',
             handle: '',
@@ -24,7 +26,9 @@ var LoginComponent = (function () {
         };
     }
     LoginComponent.prototype.login = function () {
-        console.log(this.login_data);
+        this.loginregister.loginUser().subscribe(function (data) {
+            console.log(data);
+        });
     };
     LoginComponent.prototype.register = function () {
         console.log(this.register_data);
@@ -34,9 +38,10 @@ var LoginComponent = (function () {
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'login',
-        templateUrl: './login.component.html'
+        templateUrl: './login.component.html',
+        providers: [loginRegister_service_1.LoginRegister]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [loginRegister_service_1.LoginRegister])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map
